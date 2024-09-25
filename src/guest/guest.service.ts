@@ -19,7 +19,7 @@ export class GuestService {
     {
       let failResult = {
         error: "Convidado já existe",
-        guestData: createGuestDto
+        data: createGuestDto
       };
 
       throw new HttpException(failResult, HttpStatus.BAD_REQUEST);

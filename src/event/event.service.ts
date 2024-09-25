@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateEventDto } from './dto/create-event.dto';
 import { PrismaService } from 'src/db/prisma.service';
 import { EmailService } from 'src/email/email.service';
@@ -38,6 +38,15 @@ export class EventService {
       where: { SourceBarcode: sourceBarcode }
     });
 
+    if(!event)
+    {
+      let failResult = {
+        error: "Código não encontrado",
+        data: { sourceBarcode }
+      }
+      throw new HttpException(failResult, HttpStatus.NOT_FOUND);
+    }
+
     event.CheckIn = checkInDate;
 
     await this.prismaService.event.update({
@@ -56,6 +65,15 @@ export class EventService {
         ] 
       }
     });
+
+    if(!event)
+    {
+      let failResult = {
+        error: "Código não encontrado",
+        data: { sourceBarcode }
+      }
+      throw new HttpException(failResult, HttpStatus.NOT_FOUND);
+    }
 
     event.CheckOut = checkOutDate;
 
