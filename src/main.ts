@@ -6,11 +6,19 @@ async function bootstrap() {
   app.enableCors();
 
   app.enableCors({
-    "origin": "https://access-go-frontend.vercel.app",
-    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-    "preflightContinue": false,
-    "optionsSuccessStatus": 204
+    origin: 'https://access-go-frontend.vercel.app', // Especifique o domínio correto
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS', // Inclua 'OPTIONS'
+    allowedHeaders: 'Content-Type, Authorization',
+    credentials: true, // Se necessário
+    optionsSuccessStatus: 204
   });
+
+  // app.enableCors({
+  //   "origin": "https://access-go-frontend.vercel.app",
+  //   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  //   "preflightContinue": false,
+  //   "optionsSuccessStatus": 204
+  // });
 
   // Middleware para lidar com requisições preflight manualmente
   // app.use((req, res, next) => {
