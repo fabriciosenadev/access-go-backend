@@ -6,7 +6,7 @@ async function bootstrap() {
   app.enableCors();
 
   app.enableCors({
-    "origin": "*",
+    "origin": "https://access-go-frontend.vercel.app",
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
     "preflightContinue": false,
     "optionsSuccessStatus": 204
