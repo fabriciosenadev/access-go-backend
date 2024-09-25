@@ -12,6 +12,16 @@ GET http://localhost:3000/event
 
 GET http://localhost:3000/event/b24bacd4-063a-4ffc-b0ac-7a4bf4680197
 
-PUT http://localhost:3000/event/check-in/11970606771
+PUT http://localhost:3000/event/check-in
+content-type: application/json
 
-PUT http://localhost:3000/event/check-out/11970606771
+{
+    "SourceBarcode": "11970606772"
+}
+
+PUT http://localhost:3000/event/check-out
+content-type: application/json
+
+{
+    "SourceBarcode": "11970606772"
+}

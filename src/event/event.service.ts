@@ -36,11 +36,16 @@ export class EventService {
 
   async doCheckIn(sourceBarcode: string) {
     const checkInDate = new Date();
-
+    
     const event = await this.prismaService.event.findFirst({
-      where: { SourceBarcode: sourceBarcode }
+      where: {
+        AND: [
+          { SourceBarcode: sourceBarcode },
+          { CheckIn: null }
+        ]
+      }
     });
-
+    
     if(!event)
     {
       let failResult = {
@@ -64,10 +69,14 @@ export class EventService {
     const event = await this.prismaService.event.findFirst({
       where: { AND: [
           { SourceBarcode: sourceBarcode },
-          { CheckIn: { not: null }}
+          { CheckIn: { not: null }},
+          { CheckOut: null }
         ] 
       }
     });
+
+    console.log("sourceBarcode", sourceBarcode);
+    console.log(event);
 
     if(!event)
     {

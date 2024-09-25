@@ -1,21 +1,22 @@
-import { Controller, Get, Param, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Put } from '@nestjs/common';
 import { EventService } from './event.service';
 import { CreateEventDto } from './dto/create-event.dto';
+import { UpdateEventDto } from './dto/update-event.dto';
 
 @Controller('event')
 export class EventController {
   constructor(private readonly eventService: EventService) {}
 
-  @Put('check-in/:sourceBarcode')
-  public doCheckIn(@Param(':sourceBarcode') sourceBarcode: string)
+  @Put('check-in')
+  public doCheckIn(@Body() updateEventDto: UpdateEventDto)
   {
-      return this.eventService.doCheckIn(sourceBarcode);
+      return this.eventService.doCheckIn(updateEventDto.SourceBarcode);
   }
 
-  @Put('check-out/:sourceBarcode')
-  public doCheckOut(@Param(':sourceBarcode') sourceBarcode: string)
+  @Put('check-out')
+  public doCheckOut(@Body() updateEventDto: UpdateEventDto)
   {
-      return this.eventService.doCheckOut(sourceBarcode);
+      return this.eventService.doCheckOut(updateEventDto.SourceBarcode);
   }
 
   @Get(':guestId')
