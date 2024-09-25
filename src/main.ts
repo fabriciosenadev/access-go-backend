@@ -6,7 +6,7 @@ async function bootstrap() {
 
   // Configuração do CORS
   app.enableCors({
-    origin: 'https://access-go-frontend.vercel.app', // Domínio permitido
+    origin: 'https://*/', // Domínio permitido
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS', // Inclua 'OPTIONS'
     allowedHeaders: 'Content-Type, Authorization',
     credentials: true, // Se necessário
