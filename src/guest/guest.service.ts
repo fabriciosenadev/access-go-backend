@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateGuestDto } from './dto/create-guest.dto';
 import { PrismaService } from 'src/db/prisma.service';
 import { EventService } from 'src/event/event.service';
@@ -22,7 +22,7 @@ export class GuestService {
         guestData: createGuestDto
       };
 
-      return failResult;
+      throw new HttpException(failResult, HttpStatus.BAD_REQUEST);
     }
 
     let newGuest = await this.prismaService.guest.create({
@@ -39,9 +39,5 @@ export class GuestService {
     await this.eventService.create(eventDto);
     
     return newGuest;
-  }
-
-  findAll() {
-    return this.prismaService.guest.findMany();
   }
 }
