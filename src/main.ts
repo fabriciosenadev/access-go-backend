@@ -13,6 +13,17 @@ async function bootstrap() {
     optionsSuccessStatus: 204
   });
 
+  app.use((req, res, next) => {
+    if (req.method === 'OPTIONS') {
+      res.header('Access-Control-Allow-Origin', 'https://access-go-frontend.vercel.app');
+      res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS');
+      res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+      res.header('Access-Control-Allow-Credentials', 'true');
+      return res.status(204).send(); // Respondemos diretamente ao preflight
+    }
+    next();
+  });
+
   // app.enableCors({
   //   "origin": "https://access-go-frontend.vercel.app",
   //   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
