@@ -1,0 +1,17 @@
+GET http://localhost:3000/guest
+
+POST http://localhost:3000/guest
+content-type: application/json
+
+{
+    "FullName": "Fabricio Sena",
+    "Email": "fabricior.sena@outlook.com",
+    "PhoneNumber": "11970606771"
+}
+
+
+GET http://localhost:3000/event/b24bacd4-063a-4ffc-b0ac-7a4bf4680197
+
+PUT http://localhost:3000/event/check-in/11970606771
+
+PUT http://localhost:3000/event/check-out/11970606771
