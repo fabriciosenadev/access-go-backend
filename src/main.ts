@@ -13,6 +13,11 @@ async function bootstrap() {
     optionsSuccessStatus: 204 // Para navegadores antigos
   });
 
+  app.use((req, res, next) => {
+    console.log(`Request Method: ${req.method}, Request URL: ${req.url}`);
+    next();
+  });
+
   // app.use((req, res, next) => {
   //   if (req.method === 'OPTIONS') {
   //     res.header('Access-Control-Allow-Origin', 'https://access-go-frontend.vercel.app');
