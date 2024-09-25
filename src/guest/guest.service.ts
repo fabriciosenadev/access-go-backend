@@ -15,11 +15,12 @@ export class GuestService {
       data: createGuestDto,
     });
 
-    var eventDto = new CreateEventDto();
-    eventDto.GuestId = newGuest.Id;
-    eventDto.GuestEmail = newGuest.Email;
-    eventDto.SourceBarcode = newGuest.PhoneNumber;
-    eventDto.GuestFullName = newGuest.FullName;
+    var eventDto = {
+      GuestId: newGuest.Id,
+      GuestEmail: newGuest.Email,
+      SourceBarcode: newGuest.PhoneNumber,
+      GuestFullName: newGuest.FullName
+    };
 
     await this.eventService.create(eventDto);
     

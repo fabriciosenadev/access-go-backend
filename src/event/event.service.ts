@@ -23,7 +23,7 @@ export class EventService {
       Email: createEventDto.GuestEmail,
       FullName: createEventDto.GuestFullName,
       SourceBarcode: createEventDto.SourceBarcode
-    }
+    };
 
     let emailBody = this.emailService.getEmailBody(bodyDto);
     let subject = "Aqui está seu convite";
