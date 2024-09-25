@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { CreateGuestDto } from './dto/create-guest.dto';
 import { PrismaService } from 'src/db/prisma.service';
 import { EventService } from 'src/event/event.service';
-import { CreateEventDto } from 'src/event/dto/create-event.dto';
 
 @Injectable()
 export class GuestService {
@@ -11,6 +10,21 @@ export class GuestService {
   ) { }
 
   async create(createGuestDto: CreateGuestDto) {
+
+    let guest = await this.prismaService.guest.findFirst({
+      where: { Email: createGuestDto.Email }
+    });
+
+    if(guest)
+    {
+      let failResult = {
+        error: "Convidado já existe",
+        guestData: createGuestDto
+      };
+
+      return failResult;
+    }
+
     let newGuest = await this.prismaService.guest.create({
       data: createGuestDto,
     });
