@@ -14,7 +14,7 @@ export class EventService {
       GuestId: createEventDto.GuestId,
       SourceBarcode: createEventDto.SourceBarcode
     }
-
+    console.log('incluindo convidado no evento!');
     await this.prismaService.event.create({
       data: eventCandidate
     });
@@ -24,11 +24,14 @@ export class EventService {
       FullName: createEventDto.GuestFullName,
       SourceBarcode: createEventDto.SourceBarcode
     };
-
+    console.log('Obtendo corpo do e-mail!');
     let emailBody = this.emailService.getEmailBody(bodyDto);
     let subject = "Aqui está seu convite";
 
+    console.log('Enviando e-mail!');
     this.emailService.sendEmail(createEventDto.GuestEmail, subject, emailBody);
+
+    console.log('Convidado incluso no evento!');
   }
 
   async doCheckIn(sourceBarcode: string) {

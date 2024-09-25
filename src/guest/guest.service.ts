@@ -10,7 +10,7 @@ export class GuestService {
   ) { }
 
   async create(createGuestDto: CreateGuestDto) {
-
+    console.log('Iniciando cadastro de convidado');
     let guest = await this.prismaService.guest.findFirst({
       where: { Email: createGuestDto.Email }
     });
@@ -21,10 +21,10 @@ export class GuestService {
         error: "Convidado já existe",
         data: createGuestDto
       };
-
+      console.log('falha ao registrar convidado!');
       throw new HttpException(failResult, HttpStatus.BAD_REQUEST);
     }
-
+    console.log('cadastrando convidado');
     let newGuest = await this.prismaService.guest.create({
       data: createGuestDto,
     });
@@ -37,7 +37,8 @@ export class GuestService {
     };
 
     await this.eventService.create(eventDto);
-    
+
+    console.log('convidado incluso sucesso!');
     return newGuest;
   }
 }
