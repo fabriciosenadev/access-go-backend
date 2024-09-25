@@ -1,9 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateEventDto } from './dto/create-event.dto';
-import { UpdateEventDto } from './dto/update-event.dto';
 import { PrismaService } from 'src/db/prisma.service';
 import { EmailService } from 'src/email/email.service';
-import { BodyDto } from 'src/email/dto/BodyDto';
 
 @Injectable()
 export class EventService {
@@ -21,10 +19,11 @@ export class EventService {
       data: eventCandidate
     });
 
-    let bodyDto = new BodyDto();
-    bodyDto.Email = createEventDto.GuestEmail;
-    bodyDto.FullName = createEventDto.GuestFullName;
-    bodyDto.SourceBarcode = createEventDto.SourceBarcode;
+    let bodyDto = {
+      Email: createEventDto.GuestEmail,
+      FullName: createEventDto.GuestFullName,
+      SourceBarcode: createEventDto.SourceBarcode
+    }
 
     let emailBody = this.emailService.getEmailBody(bodyDto);
     let subject = "Aqui está seu convite";
