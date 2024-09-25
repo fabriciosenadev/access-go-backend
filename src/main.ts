@@ -4,10 +4,8 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    origin: [
-      'https://access-go-frontend.vercel.app'
-    ],
-    methods: 'GET,PUT,POST',
+    origin: '*',
+    methods: 'GET,PUT,POST,OPTIONS',
   });
   await app.listen(3000);
 }
