@@ -23,4 +23,9 @@ export class EventController {
   {
     return this.eventService.getEventByGuestId(guestId);
   }
+
+  @Get()
+  findAll() {
+    return this.eventService.findAll();
+  }
 }

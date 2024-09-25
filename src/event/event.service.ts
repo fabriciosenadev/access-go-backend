@@ -72,4 +72,10 @@ export class EventService {
 
     return event;
   }
+
+  findAll() {
+    return this.prismaService.event.findMany({
+      include: { Guest: true }
+    });
+  }
 }

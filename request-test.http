@@ -10,6 +10,8 @@ content-type: application/json
 }
 
 
+GET http://localhost:3000/event
+
 GET http://localhost:3000/event/b24bacd4-063a-4ffc-b0ac-7a4bf4680197
 
 PUT http://localhost:3000/event/check-in/11970606771
