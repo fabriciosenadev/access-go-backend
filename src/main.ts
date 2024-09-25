@@ -5,13 +5,14 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // Configuração do CORS
-  app.enableCors({
-    origin: 'https://*/', // Domínio permitido
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS', // Inclua 'OPTIONS'
-    allowedHeaders: 'Content-Type, Authorization',
-    credentials: true, // Se necessário
-    optionsSuccessStatus: 204 // Para navegadores antigos
-  });
+    app.enableCors();
+  // app.enableCors({
+  //   origin: 'https://*/', // Domínio permitido
+  //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS', // Inclua 'OPTIONS'
+  //   allowedHeaders: 'Content-Type, Authorization',
+  //   credentials: true, // Se necessário
+  //   optionsSuccessStatus: 204 // Para navegadores antigos
+  // });
 
   app.use((req, res, next) => {
     console.log(`Request Method: ${req.method}, Request URL: ${req.url}`);
